@@ -1,8 +1,29 @@
 import {Book} from './models/Book'
 import {BookContainer} from './models/BookContainer'
+import { BookApi } from './models/BookApi';
+import { AddBookForm } from './models/AddBookForm';
+import { BookContainerElement } from './models/BookContainerElement';
+
+import './styles/style.css'
+
+/*
+BookContainer holds the actual book elements
+
+BookContainerElement is the DOM drawer that uses BookContainer
+
+*/
+
+const body = document.querySelector('body')
 
 
-BookContainer.addBook(Book('title1','author1','100',true))
-BookContainer.addBook(Book('title2','author2','200'))
 
-console.log(BookContainer.getBooks())
+
+
+body.appendChild(AddBookForm())
+
+for (let book in BookApi.books) {
+  BookContainer.addBook(BookApi.books[book])
+}
+
+
+body.appendChild(BookContainerElement.getBookContainerElement())
