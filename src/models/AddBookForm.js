@@ -28,6 +28,7 @@ export const AddBookForm = () => {
     const title = document.querySelector('#title').value = ''
     const author = document.querySelector('#author').value = ''
     const numPages = document.querySelector('#numPages').value = ''
+    const isRead = document.querySelector('#isRead').checked = false
   }
 
   const addButton = (text) => {
@@ -41,7 +42,8 @@ export const AddBookForm = () => {
     const title = document.querySelector('#title').value
     const author = document.querySelector('#author').value
     const numPages = document.querySelector('#numPages').value
-    BookContainer.addBook(Book(title, author, numPages))
+    const isRead = document.querySelector('#isRead').checked
+    BookContainer.addBook(Book(title, author, numPages, isRead))
     BookContainerElement.update()
     resetForm()
   }
@@ -68,6 +70,18 @@ export const AddBookForm = () => {
     'type': 'text',
     'id': 'numPages'
   }))
+  formDiv.appendChild(formRow({
+    'for': 'isRead',
+    'textContent': 'Read',
+    'type': 'checkbox',
+    'id': 'isRead'
+  }))
+
+  
+
+  
+
+
   
   formDiv.appendChild(addButton('Add'))
 

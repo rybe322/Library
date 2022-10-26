@@ -4,6 +4,7 @@ import { BookApi } from './models/BookApi';
 import { AddBookForm } from './models/AddBookForm';
 import { BookContainerElement } from './models/BookContainerElement';
 
+import './styles/meyer-reset.css'
 import './styles/style.css'
 
 /*
@@ -13,17 +14,18 @@ BookContainerElement is the DOM drawer that uses BookContainer
 
 */
 
-const body = document.querySelector('body')
 
-
-
-
-
-body.appendChild(AddBookForm())
 
 for (let book in BookApi.books) {
   BookContainer.addBook(BookApi.books[book])
 }
 
+const body = document.querySelector('body')
+const root = document.createElement('div')
+root.id = 'root'
+body.appendChild(root)
 
-body.appendChild(BookContainerElement.getBookContainerElement())
+root.appendChild(AddBookForm())
+root.appendChild(BookContainerElement.getBookContainerElement())
+
+

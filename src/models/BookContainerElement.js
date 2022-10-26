@@ -33,6 +33,22 @@ const EditBookFormElement = (id) => {
     return rowDiv
   }
 
+  const formRowCheckbox = (attrs) => {
+    const rowDiv = document.createElement('div')
+    const label = document.createElement('label')
+    const input = document.createElement('input')
+    
+    label['for'] = attrs['for']
+    label['textContent'] = attrs['textContent']
+    input['type'] = attrs['type']
+    input['id'] = attrs['id']
+    input['checked'] = attrs['isChecked']
+    rowDiv.appendChild(label)
+    rowDiv.appendChild(input)
+
+    return rowDiv
+  }
+
   const resetForm = () => {
     document.querySelector('#update-title').value = ''
     document.querySelector('#update-author').value = ''
@@ -40,18 +56,11 @@ const EditBookFormElement = (id) => {
   }
 
   const handleUpdateButton = () => {
-    //update the book 
-    // close the form
-    // redraw the correct stuff int he div
-    /*
-    const author = document.querySelector('#author').value 
-    const numPages = document.querySelector('#numPages').value 
-    BookContainer.editBook(id, {title, author, numPages})
-    */
    const title = document.querySelector('#update-title').value
    const author = document.querySelector('#update-author').value
    const numPages = document.querySelector('#update-numPages').value
-   BookContainer.editBook(id, {title, author, numPages})
+   const isRead = document.querySelector('#update-isRead').checked
+   BookContainer.editBook(id, {title, author, numPages, isRead})
    BookContainerElement.update()
   }
 
@@ -84,6 +93,13 @@ const EditBookFormElement = (id) => {
     'type': 'text',
     'id': 'update-numPages',
     'inputText': bookToUpdate.numPages
+  }))
+  divToUpdate.appendChild(formRowCheckbox({
+    'for': 'update-isRead',
+    'textContent': 'Read',
+    'type': 'checkbox',
+    'id': 'update-isRead',
+    'isChecked': bookToUpdate.isRead
   }))
   divToUpdate.appendChild(updateButtonElement())
 

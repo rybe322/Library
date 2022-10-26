@@ -1,6 +1,10 @@
 .hello {
   color: red;
 }
+#root {
+  display: flex;
+  flex-direction: column;
+}
 
 #new-book-form {
   display: block;
@@ -8,4 +12,31 @@
 
 .book-card {
   border: 1px solid;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
+.book-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
+}
+
+
+/*
+Targetting the inner 
+*/
+.book-card div > span:first-child {
+  color: green;
+  text-align: left;
+}
+.book-card div > span:nth-child(2) {
+  color: blue;
+}
+/*
+book-card end
+*/
